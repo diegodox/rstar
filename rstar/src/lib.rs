@@ -49,3 +49,6 @@ pub use crate::point::{Point, RTreeNum};
 pub use crate::rtree::RTree;
 
 pub use crate::algorithm::iterators;
+pub use crate::algorithm::nearest_neighbor::{
+    NearestNeighborDistance2Iterator, NearestNeighborIterator,
+};

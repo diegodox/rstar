@@ -48,7 +48,10 @@ impl<'a, T> NearestNeighborDistance2Iterator<'a, T>
 where
     T: PointDistance,
 {
-    pub fn new(root: &'a ParentNode<T>, query_point: <T::Envelope as Envelope>::Point) -> Self {
+    pub(crate) fn new(
+        root: &'a ParentNode<T>,
+        query_point: <T::Envelope as Envelope>::Point,
+    ) -> Self {
         let mut result = NearestNeighborDistance2Iterator {
             nodes: BinaryHeap::with_capacity(20),
             query_point,
@@ -103,6 +106,7 @@ where
     }
 }
 
+/// Nearest distance [Iterator]
 pub struct NearestNeighborDistance2Iterator<'a, T>
 where
     T: PointDistance + 'a,
@@ -111,11 +115,15 @@ where
     query_point: <T::Envelope as Envelope>::Point,
 }
 
+/// Nearest neighbor [Iterator]
 impl<'a, T> NearestNeighborIterator<'a, T>
 where
     T: PointDistance,
 {
-    pub fn new(root: &'a ParentNode<T>, query_point: <T::Envelope as Envelope>::Point) -> Self {
+    pub(crate) fn new(
+        root: &'a ParentNode<T>,
+        query_point: <T::Envelope as Envelope>::Point,
+    ) -> Self {
         NearestNeighborIterator {
             iter: NearestNeighborDistance2Iterator::new(root, query_point),
         }
@@ -133,6 +141,7 @@ where
     }
 }
 
+/// Neareset neighbour [Iterator]
 pub struct NearestNeighborIterator<'a, T>
 where
     T: PointDistance + 'a,
